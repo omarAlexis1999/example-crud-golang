@@ -1,0 +1,60 @@
+{{define "home"}}
+{{template "head"}}
+
+<a name="" id="" class="btn btn-primary" href="/create" role="button">Add Employee</a>
+<br /><br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {{range.}}
+        <tr>
+            <td scope="row">{{.Id}}</td>
+            <td>{{.Name}}</td>
+            <td>{{.Email}}</td>
+            <td>
+                <a name="" id="" class="btn btn-warning" href="/edit?id={{.Id}}" role="button">Edit</a>
+                
+                <!-- Trigger the modal with a button -->
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{.Id}}">Delete</button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal{{.Id}}" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title fs-5" id="exampleModalLabel">Delete Employee</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure to delete to {{.Name}}?</p>
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                <a name="" id="" class="btn btn-danger" href="/delete?id={{.Id}}"
+                                    role="button">Delete</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </td>
+        </tr>
+        {{end}}
+
+    </tbody>
+</table>
+{{template "foot"}}
+{{end}}
